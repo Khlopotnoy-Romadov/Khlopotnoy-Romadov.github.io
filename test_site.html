@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Моя визитка</title>
+    <style>
+        /* CSS стили */
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            background-color: #f4f4f4;
+        }
+        
+        header {
+            background: #35424a;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+        }
+        
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+        }
+        
+        #main {
+            padding: 20px 0;
+        }
+        
+        footer {
+            background: #35424a;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: #e8491d;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+        
+        .btn:hover {
+            background: #333;
+        }
+        
+        #contact-form {
+            display: none;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Иван Иванов</h1>
+            <p>Веб-разработчик и дизайнер</p>
+        </div>
+    </header>
+    
+    <section id="main">
+        <div class="container">
+            <h2>Обо мне</h2>
+            <p>Привет! Я профессиональный веб-разработчик с 5-летним опытом работы. Специализируюсь на создании современных и адаптивных веб-сайтов.</p>
+            
+            <h2>Мои навыки</h2>
+            <ul>
+                <li>HTML5, CSS3, JavaScript</li>
+                <li>React, Vue.js</li>
+                <li>Node.js, Express</li>
+                <li>UI/UX дизайн</li>
+            </ul>
+            
+            <button id="contact-btn" class="btn">Связаться со мной</button>
+            
+            <div id="contact-form">
+                <h3>Форма обратной связи</h3>
+                <form id="feedback-form">
+                    <div>
+                        <label for="name">Имя:</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div>
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div>
+                        <label for="message">Сообщение:</label>
+                        <textarea id="message" name="message" required></textarea>
+                    </div>
+                    <button type="submit" class="btn">Отправить</button>
+                </form>
+            </div>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="container">
+            <p>© 2023 Моя визитка. Все права защищены.</p>
+        </div>
+    </footer>
+    
+    <script>
+        // JavaScript код
+        document.addEventListener('DOMContentLoaded', function() {
+            // Показать/скрыть форму при нажатии на кнопку
+            const contactBtn = document.getElementById('contact-btn');
+            const contactForm = document.getElementById('contact-form');
+            
+            contactBtn.addEventListener('click', function() {
+                if (contactForm.style.display === 'block') {
+                    contactForm.style.display = 'none';
+                    contactBtn.textContent = 'Связаться со мной';
+                } else {
+                    contactForm.style.display = 'block';
+                    contactBtn.textContent = 'Скрыть форму';
+                }
+            });
+            
+            // Обработка формы
+            const feedbackForm = document.getElementById('feedback-form');
+            
+            feedbackForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const name = document.getElementById('name').value;
+                const email = document.getElementById('email').value;
+                const message = document.getElementById('message').value;
+                
+                // Здесь можно добавить AJAX запрос для отправки данных на сервер
+                alert(`Спасибо, ${name}! Ваше сообщение отправлено. Я свяжусь с вами по email: ${email}`);
+                
+                // Очистка формы
+                feedbackForm.reset();
+                contactForm.style.display = 'none';
+                contactBtn.textContent = 'Связаться со мной';
+            });
+            
+            // Анимация при загрузке страницы
+            const header = document.querySelector('header h1');
+            header.style.opacity = '0';
+            header.style.transition = 'opacity 1s';
+            
+            setTimeout(() => {
+                header.style.opacity = '1';
+            }, 500);
+        });
+    </script>
+</body>
+</html>
